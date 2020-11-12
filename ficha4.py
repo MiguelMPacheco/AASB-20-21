@@ -18,6 +18,9 @@ def valida(seq):
             pos += 1
     return res
 
+def alfabeto(seq):
+    
+
 def ficheirotxt(FileHandle):
     
     file = open(FileHandle, "r") 
