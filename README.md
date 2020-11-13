@@ -3,7 +3,7 @@
 # def alfab(seq)
 Função que devolve o tipo de sequência que se está a analisar (DNA, RNA, PROT)
 
-### ficheirotxt(FileHandle) 
+##### ficheirotxt(FileHandle) 
 Função que recebe um ficheiro de texto aberto e que devolve uma sequência
 
 ficheirofasta(FileHandle) Função que recebe um ficheiro fasta aberto e que devolve uma sequência
