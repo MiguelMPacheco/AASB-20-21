@@ -152,9 +152,9 @@ class fichaTest(unittest.TestCase):
         self.assertRaises(TypeError, reading_frames('AUUUUTCCGGCGUAU'))
         self.assertRaises(TypeError, reading_frames('MGACDKWWTSY_'))
         #Se a sequência apresentar letras minúsculas
-        self.assertEqual(reading_frames('atgCTGCATAtCTTTTAGCAagtGTCAGTAATAG'), ['MLHIF_QVSVI', 'CCISFSKCQ__', 'AAYLLASVSN', 'LLLTLAKRYAA', 'YY_HLLKDMQH', 'ITDTC_KICS']
+        self.assertEqual(reading_frames('atgCTGCATAtCTTTTAGCAagtGTCAGTAATAG'), ['MLHIF_QVSVI', 'CCISFSKCQ__', 'AAYLLASVSN', 'LLLTLAKRYAA', 'YY_HLLKDMQH', 'ITDTC_KICS'])
                          
-        self.assertEqual(reading_frames('ATGCTGCATATTCTTTTAGCAATGTCAGTCAACTAG'), ['MLHILLAMSVN_', 'CCIFF_QCQST', 'AAYSFSNVSQL', 'LVD_HC_KNMQH', '_LTDIAKRICS', 'S_LTLLKEYAA']
+        self.assertEqual(reading_frames('ATGCTGCATATTCTTTTAGCAATGTCAGTCAACTAG'), ['MLHILLAMSVN_', 'CCIFF_QCQST', 'AAYSFSNVSQL', 'LVD_HC_KNMQH', '_LTDIAKRICS', 'S_LTLLKEYAA'])
         pass
     
     def get_proteinas(self):
