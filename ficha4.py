@@ -205,22 +205,23 @@ def contar_bases(seq):
 
 
 def reading_frames(seq):
-    
     lista = []
-    for i in range(3):
-        lista.append(''.join(traducao(seq[i:])))
-    for i in range (3):
-        lista.append(traducao(complemento_inverso(seq)[i:]))
+    if valida(seq,DNA):
+        for i in range(3):
+            lista.append(''.join(traducao(seq[i:])))
+        for i in range (3):
+            lista.append(traducao(complemento_inverso(seq)[i:]))
     return lista
 
 
 
 def get_proteinas(seq):
     
-    reading_frames(seq)
-    prots = [re.findall('M.*?_', orf) for orf in reading_frames(seq)]
-    lista = sorted(set(p for lista_p in prots for p in lista_p), key = lambda x: (-len(x), x))
-    resultado = '\n'.join(''.join(map(str, item)) for item in lista)
+    if valida(seq,DNA):
+        reading_frames(seq)
+        prots = [re.findall('M.*?_', orf) for orf in reading_frames(seq)]
+        lista = sorted(set(p for lista_p in prots for p in lista_p), key = lambda x: (-len(x), x))
+        resultado = '\n'.join(''.join(map(str, item)) for item in lista)
     
     return resultado
 
