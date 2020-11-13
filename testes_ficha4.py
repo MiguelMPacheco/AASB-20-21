@@ -147,10 +147,17 @@ class fichaTest(unittest.TestCase):
                 resultado =  contar_bases("tatatafxxx")
     
     def teste_reading_frames(self):
+        
         #Se apresentar sequência que não seja de DNA
-        self.assertRaises(TypeError, reading_frames('XXXWWWJJKLMANTA'))
-        self.assertRaises(TypeError, reading_frames('AUUUUTCCGGCGUAU'))
-        self.assertRaises(TypeError, reading_frames('MGACDKWWTSY_'))
+        with self.assertRaises(TypeError):
+            resultado = reading_frames('XXXWWWJJKLMANTA')
+            
+        with self.assertRaises(TypeError):
+            resultado = reading_frames('AUUUUTCCGGCGUAU')
+            
+        with self.assertRaises(TypeError):
+            resultado = reading_frames('MGACDKWWTSY_')
+            
         #Se a sequência apresentar letras minúsculas
         self.assertEqual(reading_frames('atgCTGCATAtCTTTTAGCAagtGTCAGTAATAG'), ['MLHIF_QVSVI', 'CCISFSKCQ__', 'AAYLLASVSN', 'LLLTLAKRYAA', 'YY_HLLKDMQH', 'ITDTC_KICS'])
                          
@@ -158,18 +165,21 @@ class fichaTest(unittest.TestCase):
         pass
     
     def get_proteinas(self):
+        
         #Caso a sequência seja inválida/ RNA/ Aminoácidos
         self.assertRaises(TypeError, get_proteins('AXKWYJZ'))
         self.assertRaises(TypeError, get_proteins('AUCGUUUA'))
         self.assertRaises(TypeError, get_proteins('KLMQP_'))
+        
         #Testa letras pequenas e grandes
         self.assertEqual(get_proteins("atgCTGCATAtCTTTTAGCAagtGTCAGTAATAG"), ['MLHIF_'])
+        
         #Caso a sequência tenha múltiplas proteínas
         self.assertEqual(get_proteins("ATGTCTGCGAATTAAGGGATGGTTTGTGAACGGTATAAATGAGCGCGCATGTTTAAGATACACGGGAACTAGGCGCGCTATAAATAATTTATGTAA"), ['MRAHLYRSQTIP_', 'MFKIHGN_','MVCERYK_','MSAHV_','MSAN_','M_'] )
+        
         #Caso não tenha codões START/STOP
         self.assertRaises(TypeError, get_proteins('AGTCTCGCGCGTTTTTTAAATCGCGTTTTTTAG'))
         self.assertRaises(TypeError, get_proteins('ATGCTCGCGCGTTTTTTAAATCGCGTTTTTTAT'))
-        pass
         
         
         
