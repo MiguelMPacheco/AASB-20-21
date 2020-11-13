@@ -205,25 +205,47 @@ def contar_bases(seq):
 
 
 def reading_frames(seq):
+    #lista vazia onde vai ser adicionado as reading frames
     lista = []
+    
+    #Verfica se é uma sequencia valida de DNA
     if valida(seq,DNA):
+        
+        #Adiciona 3 sequências traduzidas apartir do primeiro, segundo e terceiro nucleotido da sequência
         for i in range(3):
             lista.append(''.join(traducao(seq[i:])))
+            
+        #Adiciona a traducao do complemento inverso de 3 sequências apartir do primeiro, segundo e terceiro nucleotido da sequência original  
         for i in range (3):
             lista.append(traducao(complemento_inverso(seq)[i:]))
-    return lista
+        
+        return lista
+    
+    #Caso não for uma sequencia válida dá um TypeError 
+    else:
+        raise TypeError("Sequencia invalida")
+            
 
 
 
 def get_proteinas(seq):
     
+    #Verfica se é uma sequencia valida de DNA
     if valida(seq,DNA):
+        
+        #Invoca a função anterior para ver as reading frames
         reading_frames(seq)
+        
+        #Extrai as proteinas nas reading frames procurando codões de inicio (o aminoacido M) até um codão stop ("_")
         prots = [re.findall('M.*?_', orf) for orf in reading_frames(seq)]
+        
+        #Cria uma lista que organiza as proteinas obtidas por tamanho e por ordem alfabética para as do mesmo tamanho
         lista = sorted(set(p for lista_p in prots for p in lista_p), key = lambda x: (-len(x), x))
-        resultado = '\n'.join(''.join(map(str, item)) for item in lista)
-    
-    return resultado
+        
+        return lista
+    #Caso não for uma sequencia válida dá um TypeError 
+    else:
+        raise TypeError("Sequencia invalida")
 
 
 
